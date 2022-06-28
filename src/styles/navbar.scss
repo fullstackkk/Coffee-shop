@@ -1,0 +1,48 @@
+.navbar{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+    position: relative;
+    justify-self: center;
+    &:first-child{
+        &:after{
+            position: absolute;
+            background:url(../asset/coffee-beanses.svg) no-repeat;
+        }        
+    }
+    
+    &-link{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 17px;
+        color: #FFFFFF;
+        position: relative;
+        transition: 0.3s all ease;
+        text-align: center;
+        box-sizing:border-box;
+        border: 1px solid transparent;
+        cursor: pointer;            
+        &:hover{ 
+            border-radius:3px;           
+            border: 1px solid #FFFFFF;  
+            background-color: rgba(255, 255, 255, 0.25)
+        }
+        &-black{
+            color: #000000;
+            &:hover{ 
+                border-radius:3px;           
+                border: 1px solid #000000;  
+                background-color: rgba(0, 0, 0, 0.15)
+            }
+        } 
+    }
+}
+.navbar-header{          
+    padding-bottom: 110px;
+    padding-left: 150px;
+    justify-self: start; 
+             
+}

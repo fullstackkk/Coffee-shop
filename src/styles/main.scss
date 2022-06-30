@@ -6,7 +6,8 @@
     grid-template-rows: 1fr 1fr 1fr 1fr ;
 
     &__section{
-        display: grid;
+        display: grid;        
+        padding: 0 20px;
         width: 100%;
     }
     &-header{
@@ -18,22 +19,32 @@
         background: url(../asset/main__bg.png) center center/cover no-repeat;
         
         &__title{
-            font-weight: 700;
-            font-size: 40px;
+            font-weight: 700;            
+            font-size: 26px;
             line-height: 58px;
             color: #FFFFFF;
             padding-bottom: 20px;
+            margin-top: 60px;
             text-align: center;
+            @media screen and (min-width: 768px){
+                font-size: 40px;
+                line-height: 58px;
+            }
         }
         &__separator{
             margin-bottom: 35px;   
         }
         &__description{
             font-weight: 700;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 35px;
             color: #FFFFFF;
             text-align: center;
+            padding-bottom: 20px;
+            @media screen and (min-width: 768px){
+                font-size: 24px;
+                line-height: 35px;
+            }
         }
         &__button{
             justify-self: center;
@@ -41,7 +52,7 @@
     }
     &-about{
         width: 100%;
-        padding: 80px 0 101px 0;
+        padding: 80px 20px 101px 20px;
         &__title{
             display: grid;
             justify-self: center;
@@ -73,11 +84,14 @@
         &__products{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-flow: row;
             grid-gap: 70px;
             justify-self: center;
-
-            &-card{
-
+            @media screen and (max-width: 992px){                
+                grid-template-columns: 1fr 1fr ;    
+            }
+            @media screen and (max-width: 556px){                
+                grid-template-columns: 1fr;    
             }
         }
     }    

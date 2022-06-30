@@ -1,6 +1,4 @@
 .navbar{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     position: relative;
     justify-self: center;
@@ -9,6 +7,25 @@
             position: absolute;
             background:url(../asset/coffee-beanses.svg) no-repeat;
         }        
+    }
+    &-footer{
+        @media screen and (max-width: 992px){
+            grid-gap: 25px;
+        }    
+        @media screen and (min-width: 568px){ 
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+    &-header{
+        justify-self: center;  
+        @media screen and (min-width: 768px){
+            grid-template-columns: 1fr 1fr 1fr;
+            display: grid;          
+            padding-bottom: 60px;
+            padding-left: 150px;
+            justify-self: start;
+        }          
     }
     
     &-link{
@@ -22,8 +39,11 @@
         position: relative;
         transition: 0.3s all ease;
         text-align: center;
+        text-decoration: none;
         box-sizing:border-box;
         border: 1px solid transparent;
+        width: 150px;
+        height: 40px;
         cursor: pointer;            
         &:hover{ 
             border-radius:3px;           
@@ -39,10 +59,4 @@
             }
         } 
     }
-}
-.navbar-header{          
-    padding-bottom: 110px;
-    padding-left: 150px;
-    justify-self: start; 
-             
 }

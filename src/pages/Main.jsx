@@ -70,6 +70,13 @@ const Main=()=>{
                             <div className="card__descr-price">6.99$</div>
                         </div>
                     </div>
+                    <div className="main-best__products-card card">
+                        <img src={our_best_3} alt="img" className="card__img" />
+                        <div className="card__descr">
+                            <div className="card__descr-title">AROMISTICO Coffee 1 kg</div>
+                            <div className="card__descr-price">6.99$</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <Footer/>

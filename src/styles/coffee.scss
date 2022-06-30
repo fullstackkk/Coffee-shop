@@ -9,14 +9,22 @@
         width: 100%;
     }    
     &-about{
-        padding: 70px 0 60px 0;
+        padding: 70px 20px 60px 20px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 80px;
-        justify-content: center;
+        justify-content: center;  
+        @media screen and (max-width: 992px){   
+            justify-items: center;         
+            grid-template-columns: 1fr;              
+            grid-template-rows: 1fr 1fr ;
+            grid-gap: 50px;    
+        }
         &__img{
             display: grid;
-            justify-self: end;
+            @media screen and (min-width: 992px){   
+                justify-self: end;
+            }
         }
         &__wrapper{
             max-width: 346px;

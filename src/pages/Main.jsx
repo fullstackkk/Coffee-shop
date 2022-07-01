@@ -5,11 +5,13 @@ import '../styles/main.scss';
 import our_best_1 from '../asset/our_best_1.png';
 import our_best_2 from '../asset/our_best_2.png';
 import our_best_3 from '../asset/our_best_3.png';
+import video from '../asset/video.mp4';
 import Footer from '../components/Footer';
 
 const Main=()=>{
     return(
-        <div className="main">
+        <div className="main">            
+            <video src={video} type="video/mp4" autoplay muted loop playsinline className='main__video'/>
             <div className="main__section main-header">
                 <Navbar/>
                 <div className="main-header__title">Everything You Love About Coffee</div>

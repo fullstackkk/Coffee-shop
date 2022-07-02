@@ -66,7 +66,9 @@
     transition: 0.5s all ease; 
     cursor: pointer;   
     &:hover{        
-        box-shadow: -6px -7px 21px 5px rgba(166, 130, 130, 0.75);
+        box-shadow: -6px -7px 21px 5px rgba(166, 130, 130, 0.75);        
+        transform: scale(1.2);
+        transition: all 0.5s ease;
     }
     &__img{
         justify-self: center;

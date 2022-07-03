@@ -31,17 +31,42 @@ import '../styles/market.scss';
 
 const Market=()=>{
     const {data}=DB;
-
     const [productList, setProductList]=useState([]);
+    const [offset, setOffset] = useState(0)
 
-
-
+    // side Effect
     useEffect(()=>{
-        setProductList(data)
+        console.log('----- Запуск useEffect-----')
+        getMoreProducts(offset)    
     },[])
 
+    // helper functions
+    const getNewProducts=(newProductList)=>{
+        console.log('----- Запуск getNewProducts-----')
+        // console.log(`устанаавливаем офсет в getNewProducts, offset: ${offset}`)
+        setProductList(productList=>[...productList,...newProductList]);          
+        console.log('----- productList в данный момент -----');         
+        console.log(productList);        
+        setOffset(offset => offset + 9);     
+    }
+
+    const getMoreProducts=(offset)=>{
+        console.log('----- Запуск getMoreProducts-----')
+        const newProductList= [];
+        for (let index = offset; index < offset+9; index++) {            
+            console.log('----- Запуск For -----')            
+            console.log(`index: ${index}, offset: ${offset}`)
+            console.log(`добавляем в стейт obj с id: ${data[index].id}`)
+            newProductList.push(data[index]);            
+        }      
+        getNewProducts(newProductList)
+    }
+
+    
+
+    // View
     const itemList=(arr)=>{
-        const items =arr.map((item,i)=>{
+        const items =arr.map((item)=>{
             return(
                 <div key={item.id} className="product">
                     <img src={product_img} alt="product" className="product__img" />
@@ -81,8 +106,8 @@ const Market=()=>{
                     </div>
                 </div>
                 {items}
+                <div onClick={()=> getMoreProducts(offset)} className='market__button button button-dark'>More</div>
             </div>
     )
 }
-
 export default Market;

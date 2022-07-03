@@ -8,6 +8,9 @@
         border-bottom: 1px solid #000;
         margin-bottom: 60px;
     }
+    &__button{
+        justify-self: center;
+    }
     &__navigation{
         display: grid;
         justify-content: center;

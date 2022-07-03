@@ -33,39 +33,45 @@ const Market=()=>{
     const {data}=DB;
     const [productList, setProductList]=useState([]);
     const [offset, setOffset] = useState(0)
+    const [newProductLoading, setNewProductLoading ] = useState(false)
 
     // side Effect
     useEffect(()=>{
-        console.log('----- Запуск useEffect-----')
-        getMoreProducts(offset)    
+        // console.log('----- Запуск useEffect-----')
+        getMoreProducts(offset,true)    
     },[])
 
     // helper functions
     const getNewProducts=(newProductList)=>{
-        console.log('----- Запуск getNewProducts-----')
+        // console.log('----- Запуск getNewProducts-----')
         // console.log(`устанаавливаем офсет в getNewProducts, offset: ${offset}`)
         setProductList(productList=>[...productList,...newProductList]);          
-        console.log('----- productList в данный момент -----');         
-        console.log(productList);        
-        setOffset(offset => offset + 9);     
+        // console.log('----- productList в данный момент -----');         
+        // console.log(productList);        
+        setOffset(offset => offset + 9); 
+        if(data.length < offset+9){                
+            setNewProductLoading(true)
+        }    
     }
 
-    const getMoreProducts=(offset)=>{
-        console.log('----- Запуск getMoreProducts-----')
+    const getMoreProducts=(offset,initial)=>{
+        
+        initial ? setNewProductLoading(false) : setNewProductLoading(true);
+        // console.log('----- Запуск getMoreProducts-----')
         const newProductList= [];
         for (let index = offset; index < offset+9; index++) {            
-            console.log('----- Запуск For -----')            
-            console.log(`index: ${index}, offset: ${offset}`)
-            console.log(`добавляем в стейт obj с id: ${data[index].id}`)
-            newProductList.push(data[index]);            
-        }      
+            // console.log('----- Запуск For -----')            
+            // console.log(`index: ${index}, offset: ${offset}`)
+            // console.log(`добавляем в стейт obj с id: ${data[index].id}`)
+            newProductList.push(data[index]);                 
+        }               
         getNewProducts(newProductList)
     }
 
     
 
     // View
-    const itemList=(arr)=>{
+    const ItemList=(arr)=>{
         const items =arr.map((item)=>{
             return(
                 <div key={item.id} className="product">
@@ -84,9 +90,26 @@ const Market=()=>{
             </div>
         )
     }
+    const Filter=()=>{
+        const onFilter=()=>{
+            
+        }
+
+        return(
+            <div className="filter">
+                <div className="filter__text">Or filter</div>
+                <div className="filter__navbar navbar">
+                    <div onClick={onFilter} className="navbar__link">Brazil</div>
+                    <div onClick={onFilter} className="navbar__link">Columbia</div>
+                    <div onClick={onFilter} className="navbar__link">Kenya</div>
+                </div>
+            </div>
+        )
+    }
 
     
-    const items = itemList(productList);
+    const items = ItemList(productList);
+    const filter = Filter();
 
     return(
         <div className="market">
@@ -96,17 +119,12 @@ const Market=()=>{
                         <div className="search__text">Looking for</div>
                         <input className="search__input" placeholder='start typing here...' type="text"  />
                     </div>
-                    <div className="filter">
-                        <div className="filter__text">Or filter</div>
-                        <div className="filter__navbar navbar">
-                            <div className="navbar__link">Brazil</div>
-                            <div className="navbar__link">Columbia</div>
-                            <div className="navbar__link">Kenya</div>
-                        </div>
-                    </div>
+                    {filter}
                 </div>
                 {items}
-                <div onClick={()=> getMoreProducts(offset)} className='market__button button button-dark'>More</div>
+                <div onClick={()=> getMoreProducts(offset)} 
+                    className='market__button button button-dark'
+                    disabled={newProductLoading} >More</div>
             </div>
     )
 }

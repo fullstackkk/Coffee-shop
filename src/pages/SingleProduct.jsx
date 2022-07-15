@@ -1,11 +1,18 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import useCoffeeService from '../service/service';
 import PageHeader from '../components/PageHeader';
 import Footer from '../components/Footer';
-
 import cover from '../asset/product__cover.png';
 
 import '../styles/singleProduct.scss';
 
 const SingleProduct=()=>{
+    const { ProductId } = useParams();
+    const [product, setProduct] =useState(null);
+    const {getProduct}=useCoffeeService();
+
+
     return(
         <div className="single-product">
             <PageHeader title={'Our Coffee'}/>

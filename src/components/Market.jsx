@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import DB from '../service/DB.json'
+import { Link } from 'react-router-dom';
+import DB from '../service/DB.json';
 
 import product_img from '../asset/our_best_1.png';
 
@@ -75,12 +76,14 @@ const Market=()=>{
         const items =arr.map((item)=>{
             return(
                 <div key={item.id} className="product">
-                    <img src={product_img} alt="product" className="product__img" />
-                    <div className="product__product-descr product-descr">
-                        <div className="product-descr__title">{item.title} Coffee 1 kg</div>
-                        <div className="product-descr__country">{item.country}</div>
-                        <div className="product-descr__price">{item.price}$</div>
-                    </div>
+                    <Link to={`/Coffee-shop/Coffee/${item.id}`}>
+                        <img src={product_img} alt="product" className="product__img" />
+                        <div className="product__product-descr product-descr">
+                            <div className="product-descr__title">{item.title} Coffee 1 kg</div>
+                            <div className="product-descr__country">{item.country}</div>
+                            <div className="product-descr__price">{item.price}$</div>
+                        </div>
+                    </Link>
                 </div> 
             )
         });
@@ -106,19 +109,29 @@ const Market=()=>{
             </div>
         )
     }
+    const Search=()=>{
+        const onSearch=()=>{
+            
+        }
+
+        return(
+            <div className="search">
+                <div className="search__text">Looking for</div>
+                <input className="search__input" placeholder='start typing here...' type="text"  />
+            </div>
+        )
+    }
 
     
     const items = ItemList(productList);
     const filter = Filter();
+    const search =Search();
 
     return(
         <div className="market">
                 <div className="market__delimiter"></div>
                 <div className="market__navigation">
-                    <div className="search">
-                        <div className="search__text">Looking for</div>
-                        <input className="search__input" placeholder='start typing here...' type="text"  />
-                    </div>
+                    {search}
                     {filter}
                 </div>
                 {items}
